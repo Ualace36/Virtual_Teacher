@@ -1,0 +1,227 @@
+{
+  "name": "EmitirParteAudio",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        3168,
+        -80
+      ],
+      "id": "2278c5d1-87c5-4025-b159-e99d38b2af44",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "operation": "send-audio",
+        "instanceName": "={{ $('Start').item.json.instance }}",
+        "remoteJid": "={{ $('Start').item.json.body_data_key_remoteJid_split }}",
+        "media": "={{ $json.data }}",
+        "options_message": {
+          "delay": 100
+        }
+      },
+      "id": "5dc83753-cfe9-4f1c-8dce-65a2c01ad9d9",
+      "name": "Enviar Áudio - Parte",
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        3328,
+        -80
+      ],
+      "credentials": {
+        "evolutionApi": {
+          "id": "WHEICXa0GMCS3xGK",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "instance",
+              "type": "any"
+            },
+            {
+              "name": "body_data_key_remoteJid_split",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "cdd5daf1-5fdd-4d3d-952a-7bee1322ab08",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        2496,
+        -96
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "binary.data.fileName",
+              "value": "translate_tts.mpga"
+            },
+            {
+              "name": "binary.data.mimeType",
+              "value": "audio/mpeg"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "id": "4536de71-b0a1-44cf-8d1b-3c1e8093a2e7",
+      "name": "Set Binário de Áudio",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        2688,
+        -96
+      ],
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2928,
+        -96
+      ],
+      "id": "bd3da7a5-1641-4e48-a5b4-01656919280a",
+      "name": "Loop Over Items",
+      "executeOnce": false
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me",
+      "typeVersion": 1,
+      "position": [
+        2816,
+        176
+      ],
+      "id": "54dfd6fe-382d-400c-b10a-d62abf0bd95b"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3504,
+        -80
+      ],
+      "id": "256825a1-bdb1-4545-8eeb-d30b92720e4e",
+      "name": "Wait",
+      "webhookId": "3aa2ba9b-5cd4-4297-a499-663f06568741"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Enviar Áudio - Parte",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Set Binário de Áudio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Binário de Áudio": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar Áudio - Parte": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace Me": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "127f84b3-3406-4760-adc9-fa40ffd72a17",
+  "meta": {
+    "instanceId": "88e9d2f90a4702dd6d821ff8d94d5cd79fd65d29006f8aae6caaecbf1f17664f"
+  },
+  "id": "KnFgg8jv1oAliHD2",
+  "tags": []
+}
