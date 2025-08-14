@@ -10,8 +10,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        128,
-        48
+        80,
+        -32
       ],
       "id": "3cd6cab9-0b55-4abc-8569-b59594eb1bfe",
       "name": "Webhook_Evolution",
@@ -70,8 +70,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        288,
-        48
+        256,
+        -32
       ],
       "id": "d7d3ec60-3c84-43d2-811b-b1aedfef8672",
       "name": "Dados_Evolution"
@@ -87,8 +87,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2,
       "position": [
-        2192,
-        -208
+        2336,
+        -288
       ],
       "id": "9ee08cc2-62f6-4375-aeab-6e0c2fc8235a",
       "name": "AI Agent"
@@ -103,7 +103,7 @@
       "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
       "typeVersion": 1.5,
       "position": [
-        2320,
+        2528,
         -32
       ],
       "id": "fc1f52af-37f5-4007-bf22-f303fcac7fcd",
@@ -126,7 +126,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        2688,
+        2896,
         -384
       ],
       "id": "dd1998ea-70f2-4e2e-8f2b-8b85326ec33d",
@@ -145,7 +145,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2512,
+        2800,
         -208
       ],
       "id": "ee3fd503-8fd8-462b-bef7-cf4f6cc700f5",
@@ -164,7 +164,7 @@
           "conditions": [
             {
               "id": "76ca7c3b-5a58-4aaa-9be3-5c57fcf9d285",
-              "leftValue": "={{ $json[\"fromMe\"] }}",
+              "leftValue": "={{ $('Dados_Evolution').item.json.fromMe }}",
               "rightValue": "=false",
               "operator": {
                 "type": "string",
@@ -179,8 +179,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        448,
-        48
+        848,
+        -112
       ],
       "id": "51600880-1fca-4334-bf46-5595c0a471c6",
       "name": "fromMe"
@@ -241,7 +241,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        816,
+        1376,
         -192
       ],
       "id": "68ae45a9-3e90-47b2-912f-5aeea70832d0",
@@ -264,7 +264,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1296,
+        1856,
         -208
       ],
       "id": "93925ed4-df94-40b4-9ed3-e7c3ea9dc9ae",
@@ -287,8 +287,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1760,
-        -208
+        2048,
+        -656
       ],
       "id": "45f114f0-b57d-4d63-bd21-a7c2f09f1f4b",
       "name": "Mensagem"
@@ -303,7 +303,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        928,
+        1488,
         176
       ],
       "id": "31b3118b-0779-4fe2-9e44-2595c2a711d4",
@@ -326,7 +326,7 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        1136,
+        1696,
         176
       ],
       "id": "7216d42d-f22f-46f9-b9e3-f6f06e5c87db",
@@ -341,7 +341,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "{credencial}"
+              "value": "bearer token"
             }
           ]
         },
@@ -365,7 +365,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1312,
+        1872,
         176
       ],
       "id": "933b74c8-398e-4907-b90c-7d522b568c4b",
@@ -394,7 +394,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1488,
+        2048,
         176
       ],
       "id": "a5ffab23-775f-43ee-b73f-6d0314d53b45",
@@ -424,7 +424,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4,
       "position": [
-        2848,
+        3056,
         -16
       ],
       "id": "e11e1cb5-fc3b-4a14-bce2-b8e0e0ea0f46",
@@ -441,7 +441,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        2944,
+        3152,
         -384
       ],
       "id": "09addc0c-513f-4cd2-b3e4-52f6982efa88",
@@ -471,8 +471,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2032,
-        -208
+        2560,
+        -672
       ],
       "id": "745bfdb6-1893-4624-bf5c-849cf07fea76"
     },
@@ -506,7 +506,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1648,
+        2208,
         176
       ],
       "id": "0ab6b0b8-8469-4d73-9ef3-c13a8f8532b2"
@@ -541,8 +541,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1888,
-        -208
+        2256,
+        -688
       ],
       "id": "5efd6a29-38ec-4760-bd1b-cc4644917bf7"
     },
@@ -587,7 +587,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        560,
+        1120,
         -192
       ],
       "id": "34693a1e-6414-48cf-8714-b36feaf2557c",
@@ -602,7 +602,7 @@
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        2720,
+        2928,
         -16
       ]
     },
@@ -652,7 +652,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        2976,
+        3184,
         -192
       ],
       "name": "Call EmitirParteAudio",
@@ -665,8 +665,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        2192,
-        -32
+        2400,
+        16
       ],
       "id": "42558cf8-7b09-438d-b20c-292516fd67cf",
       "name": "Google Gemini Chat Model",
@@ -676,9 +676,169 @@
           "name": "Google Gemini(PaLM) Api account"
         }
       }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "={{ $('Webhook_Evolution').item.json.body.instance }}",
+        "remoteJid": "={{ $('Webhook_Evolution').item.json.body.data.key.remoteJid }}",
+        "messageText": "\"Olá, verifiquei que você ainda não é nosso aluno, mas não se preocupe, iremos entrar em contato assim que possível.\"",
+        "options_message": {
+          "linkPreview": false
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        688,
+        272
+      ],
+      "id": "2a208db2-ae74-43d2-97b3-40d682797d17",
+      "name": "Enviar texto1",
+      "credentials": {
+        "evolutionApi": {
+          "id": "WHEICXa0GMCS3xGK",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2d136424-f55b-430f-9871-44ee958cfd2e",
+              "leftValue": "={{ $('Dados_Evolution').item.json.from }}",
+              "rightValue": "={{ $json.from_supaBase }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        576,
+        -48
+      ],
+      "id": "915b2431-efd8-41ee-9ea7-d6827b149f30",
+      "name": "If_Exist_No_Cadastro"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "usuarios",
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        416,
+        -48
+      ],
+      "id": "dabae4a0-3862-4035-80de-d181cdcc423e",
+      "name": "validar_usuario",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ScZUgTWyyCVOq1QK",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "usuarios"
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        896,
+        272
+      ],
+      "id": "f16bd0e6-e806-40de-b1c6-cb8dcf1dec1b",
+      "name": "Create a row",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ScZUgTWyyCVOq1QK",
+          "name": "Supabase account"
+        }
+      }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Webhook_Evolution": [
+      {
+        "json": {
+          "headers": {
+            "content-type": "application/json",
+            "user-agent": "axios/1.7.7",
+            "content-length": "969",
+            "accept-encoding": "gzip, compress, deflate, br",
+            "host": "host.docker.internal:5678",
+            "connection": "keep-alive"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "messages.upsert",
+            "instance": "session_01",
+            "data": {
+              "key": {
+                "remoteJid": "557388737835@s.whatsapp.net",
+                "fromMe": false,
+                "id": "C633C8F3487D77FE5D25BB74CB49F6D8"
+              },
+              "pushName": "Wallace",
+              "message": {
+                "messageContextInfo": {
+                  "deviceListMetadata": {
+                    "senderTimestamp": "1752321956",
+                    "recipientKeyHash": "Bg53dwMEjc/V6w==",
+                    "recipientTimestamp": "1753817400"
+                  },
+                  "deviceListMetadataVersion": 2,
+                  "messageSecret": "E9RJ2F8ECVLOTrEV/6/e7YBFX20gEwElydWHiQqO0PM="
+                },
+                "conversation": "Hello"
+              },
+              "contextInfo": {
+                "expiration": 0,
+                "ephemeralSettingTimestamp": "1753811790",
+                "disappearingMode": {
+                  "initiator": "CHANGED_IN_CHAT",
+                  "trigger": "UNKNOWN"
+                }
+              },
+              "messageType": "conversation",
+              "messageTimestamp": 1754237981,
+              "instanceId": "5fa740b0-cba6-4136-9124-3a43b6a85550",
+              "source": "android"
+            },
+            "destination": "http://host.docker.internal:5678/webhook-test/testando",
+            "date_time": "2025-08-03T13:19:42.384Z",
+            "sender": "557382488032@s.whatsapp.net",
+            "server_url": "http://localhost:8080",
+            "apikey": "A8F9C5C8F9B1-43A7-B467-04E02830BDF0"
+          },
+          "webhookUrl": "http://host.docker.internal:5678/webhook-test/testando",
+          "executionMode": "test"
+        }
+      }
+    ]
+  },
   "connections": {
     "Webhook_Evolution": {
       "main": [
@@ -695,7 +855,7 @@
       "main": [
         [
           {
-            "node": "fromMe",
+            "node": "validar_usuario",
             "type": "main",
             "index": 0
           }
@@ -928,13 +1088,53 @@
           }
         ]
       ]
+    },
+    "If_Exist_No_Cadastro": {
+      "main": [
+        [
+          {
+            "node": "fromMe",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Enviar texto1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "validar_usuario": {
+      "main": [
+        [
+          {
+            "node": "If_Exist_No_Cadastro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto1": {
+      "main": [
+        [
+          {
+            "node": "Create a row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "c636afab-d33c-44c9-817a-50a12ed1342d",
+  "versionId": "97911f25-9351-4519-aad1-dd428a5a088a",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "88e9d2f90a4702dd6d821ff8d94d5cd79fd65d29006f8aae6caaecbf1f17664f"
