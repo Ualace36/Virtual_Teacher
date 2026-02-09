@@ -1,0 +1,135 @@
+{
+  "name": "Agente IA - Error Handling Robusto",
+  "description": "Exemplo de workflow com tratamento robusto de erros, retry logic e fallbacks",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "testando",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [80, -32],
+      "id": "webhook-1",
+      "name": "Webhook_Evolution"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "log-1",
+              "name": "timestamp",
+              "value": "={{ new Date().toISOString() }}",
+              "type": "string"
+            },
+            {
+              "id": "log-2",
+              "name": "userId",
+              "value": "={{ $json.body.data.key.remoteJid.split('@')[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "log-3",
+              "name": "messageType",
+              "value": "={{ $json.body.data.messageType }}",
+              "type": "string"
+            },
+            {
+              "id": "log-4",
+              "name": "eventStatus",
+              "value": "= message_received",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [256, -32],
+      "id": "log-entrada",
+      "name": "Log_Entrada"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "val-1",
+              "leftValue": "={{ $('Log_Entrada').item.json.userId }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "string",
+                "operation": "isEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [432, -32],
+      "id": "validar-entrada",
+      "name": "Validar_Input"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "err-1",
+              "name": "erro",
+              "value": "= Erro: Dados de entrada inválidos",
+              "type": "string"
+            },
+            {
+              "id": "err-2",
+              "name": "timestamp",
+              "value": "={{ new Date().toISOString() }}",
+              "type": "string"
+            },
+            {
+              "id": "err-3",
+              "name": "severity",
+              "value": "= high",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [608, -112],
+      "id": "erro-validacao",
+      "name": "Erro_Validacao_Input"
+    }
+  ],
+  "connections": {
+    "Webhook_Evolution": {
+      "main": [[{ "node": "Log_Entrada", "type": "main", "index": 0 }]]
+    },
+    "Log_Entrada": {
+      "main": [[{ "node": "Validar_Input", "type": "main", "index": 0 }]]
+    },
+    "Validar_Input": {
+      "main": [
+        [{ "node": "Validar_Usuario_BD", "type": "main", "index": 0 }],
+        [{ "node": "Erro_Validacao_Input", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
